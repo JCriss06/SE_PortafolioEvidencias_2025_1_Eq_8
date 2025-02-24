@@ -3,8 +3,9 @@ def leer_datos():
     import serial as conn
     arduino = conn.Serial(port="COM6", baudrate=9600, timeout=1)
     cadena = []
-    while len(cadena) < 8: #ajustable
+    while len(cadena) < 8: # ajustable
         cadena.append(arduino.readline().decode().strip())
+    arduino.close() #new
     return cadena
 
 def valida1v2(cadena):
@@ -56,5 +57,3 @@ if __name__ == "__main__":
         print(res)
 
     escritura(pb)
-
-

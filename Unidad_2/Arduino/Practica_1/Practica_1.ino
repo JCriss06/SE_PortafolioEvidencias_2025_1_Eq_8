@@ -65,7 +65,7 @@ int obtener_Moda(int valor[]){
   return moda;
 }
 
-int sensor[] = { A0, A1, A2, A3 }; //agregar los otros pines 6 en total
+int sensor[] = { A0, A1, A2, A3, A4, A5 }; //agregar los otros pines 6 en total
 void setup() {
   Serial.begin(9600);
 }
@@ -76,13 +76,16 @@ int sensorMediana[30];
 int sensorMenor[30];
 int sensorMayor[30];
 int sensorModa[30];
+//int sensorNormal;
 
 void loop() {
+  sensorNormal = analogRead(sensor[5]);
   for (int i = 0; i < totalLecturas; i++) {
     sensorMedia[i] = analogRead(sensor[0]);
     sensorMediana[i] = analogRead(sensor[1]);
     sensorMenor[i] = analogRead(sensor[2]);
     sensorMayor[i] = analogRead(sensor[3]);
+    sensorModa[i] = analogRead(sensor[4]);
     delayMicroseconds(100);
   }
 
@@ -90,8 +93,9 @@ void loop() {
   int b = obtener_Mediana(sensorMediana);
   int c = obtener_Mayor(sensorMayor);
   int d = obtener_Menor(sensorMenor);
+  ind e = obtener_Moda(sensorModa);
 
-  Serial.println(String(a) + ',' + String(b) + ',' + String(c) + ',' + String(d));
+  Serial.println(String(String(sensorNormal) + ',' + String(a) + ',' + String(b) + ',' + String(c) + ',' + String(d), + ',' + String(e));
   
   delay(1000);
 }
