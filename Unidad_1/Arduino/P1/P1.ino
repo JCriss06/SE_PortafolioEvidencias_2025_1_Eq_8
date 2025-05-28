@@ -10,5 +10,6 @@ int v ;
 void loop() {
   v = analogRead(sensor);
   Serial.println(v);
+  Serial.println("Hola");
   delay(1000);
 }
